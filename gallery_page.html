@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Galeri - TK PKK Siti Chotijah</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comic Neue', cursive;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body {
+    background-color: #E8F5FF;
+    background-image: 
+        radial-gradient(#7a88ad 2px, transparent 2px),
+        radial-gradient(#B4F8C8 2px, transparent 2px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(119, 102, 180, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    width: 100%;
+}
+
+.nav-logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.nav-links a:hover {
+    color: #FFD5E5;
+}
+    
+    /* Gallery */
+    .gallery-slider {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    
+    .gallery-container {
+        overflow: hidden;
+        padding: 20px 0;
+    }
+
+    .gallery-detail-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 100px 20px;
+    }
+    
+    .gallery-detail-image {
+        width: 100%;
+        max-width: 800px;
+        border-radius: 20px;
+        margin: 0 auto;
+        display: block;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .gallery-detail-content {
+        position: relative;
+        background-color: rgba(119, 102, 180, 1);
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+    .gallery-track {
+        display: flex;
+        transition: transform 0.5s ease;
+        gap: 20px;
+    }
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .gallery-item {
+        flex: 0 0 calc(33.333% - 14px);
+        min-width: calc(33.333% - 14px);
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        cursor: pointer;
+        aspect-ratio: 4/3;
+    }
+    
+    .gallery-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover img {
+        transform: scale(1.05);
+    }
+    
+    .gallery-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(119, 102, 180, 0.9);
+        color: white;
+        padding: 15px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover .gallery-caption {
+        transform: translateY(0);
+    }
+    
+    
+    .slider-container {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    
+    .slider-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(119, 102, 180, 0.9);
+        border: none;
+        color: white;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .slider-nav:hover {
+        background: rgba(119, 102, 180, 1);
+        transform: translateY(-50%) scale(1.1);
+    }
+    
+    .prev-btn {
+        left: 10px;
+    }
+    
+    .next-btn {
+        right: 10px;
+    }
+    
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .modal.active {
+        display: flex;
+    }
+    
+    .modal-content {
+        max-width: 90%;
+        max-height: 90vh;
+    }
+    
+    .modal-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+    }
+    
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    
+    /* Footer */
+    .footer-container {
+        position: relative;
+        width: 100%;
+        margin-top: 100px;
+    }
+    
+    .footer-wave {
+        position: absolute;
+        top: -100px;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%237766b4' fill-opacity='1' d='M0,160L80,165.3C160,171,320,181,480,170.7C640,160,800,128,960,128C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    /* Bubble animation */
+    .bubbles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+    }
+    
+    .bubble {
+        position: absolute;
+        bottom: -100px;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        opacity: 0.5;
+        animation: rise 10s infinite ease-in;
+    }
+    
+    .bubble:nth-child(1) { left: 10%; animation-duration: 8s; }
+    .bubble:nth-child(2) { left: 20%; animation-duration: 5s; animation-delay: 1s; }
+    .bubble:nth-child(3) { left: 35%; animation-duration: 7s; animation-delay: 2s; }
+    .bubble:nth-child(4) { left: 50%; animation-duration: 11s; animation-delay: 0s; }
+    .bubble:nth-child(5) { left: 65%; animation-duration: 6s; animation-delay: 3s; }
+    .bubble:nth-child(6) { left: 80%; animation-duration: 9s; animation-delay: 2s; }
+    .bubble:nth-child(7) { left: 90%; animation-duration: 7s; animation-delay: 1s; }
+    
+    @keyframes rise {
+        0% {
+            bottom: -100px;
+            transform: translateX(0);
+        }
+        50% {
+            transform: translate(100px, -500px);
+        }
+        100% {
+            bottom: 1080px;
+            transform: translateX(-200px);
+        }
+    }
+    
+    footer {
+        background: linear-gradient(135deg, #7766b4, #476396);
+        color: white;
+        position: relative;
+        overflow: hidden;
+        padding: 50px 0 20px;
+        margin-top: -1px; /* Remove any gap */
+    }
+    
+    .footer-content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .footer-section h3 {
+        color: #FFD5E5;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    
+    .footer-section h3::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background: #FFD5E5;
+    }
+    
+    .footer-section p {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .footer-section i {
+        color: #FFD5E5;
+    }
+    
+    .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .social-icons {
+        margin: 20px 0;
+    }
+    
+    .social-icons a {
+        color: #FFD5E5;
+        margin: 0 10px;
+        font-size: 1.2rem;
+        transition: transform 0.3s ease;
+        display: inline-block;
+    }
+    
+    .social-icons a:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* Mobile Menu */
+    .mobile-menu-btn {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1100;
+    }
+    
+    .mobile-menu-btn span {
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+    
+    
+    @media (max-width: 992px) {
+        .gallery-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            padding: 20px;
+            gap: 20px;
+        }
+    
+        .gallery-item {
+            flex: 0 0 calc(50% - 10px);
+            min-width: calc(50% - 10px);
+        }
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .mobile-menu-btn {
+            display: flex;
+        }
+    
+        .nav-links {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background: rgba(119, 102, 180, 0.98);
+            padding: 80px 20px 20px;
+            flex-direction: column;
+            transition: 0.3s ease-in-out;
+        }
+    
+        .nav-links.active {
+            right: 0;
+            display: flex;
+        }
+    
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+    
+        #galeri .container {
+            padding: 0 15px;
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        .gallery-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            padding: 15px;
+            gap: 15px;
+            width: calc(100% - 10px);
+            margin: 0 auto;
+        }
+    
+        .gallery-item {
+            margin: 0 auto;
+            width: 100%;
+        }
+    
+        /* Container padding adjustments */
+        .container {
+            padding: 0 20px;
+            width: 100%;
+            margin: 0 auto;
+        }
+    
+        /* Section title adjustments for mobile */
+        .section-title {
+            padding: 0 15px;
+            margin-bottom: 30px;
+        }
+    
+        /* Ensure proper spacing around teacher images */
+        .teacher-card img {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 15px;
+        }
+    
+        /* Programs section specific adjustments */
+        #program .container {
+            padding: 0 15px;
+            max-width: 100%;
+        }
+    
+        .programs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 0 15px;
+            width: calc(100% - 30px);
+            margin: 0 auto;
+        }
+    
+        .program-card {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 320px; /* Control maximum width on mobile */
+        }
+    
+        /* Ensure proper spacing for program images */
+        .program-image {
+            width: 100%;
+            height: 200px;
+        }
+    
+        .program-content {
+            padding: 20px 15px;
+        }
+    
+        /* Section title adjustments */
+        #program .section-title {
+            padding: 0 15px;
+            margin-bottom: 30px;
+        }
+    
+        .footer-section {
+            margin: 0 15px;
+        }
+        
+        .footer-content {
+            grid-template-columns: 1fr;
+            padding: 0 15px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .gallery-item {
+            flex: 0 0 calc(100% - 20px);
+            min-width: calc(100% - 20px);
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .map-container {
+            width: 94%;
+            padding: 1rem;
+        }
+    
+        #guru .container {
+            padding: 0 10px;
+        }
+    
+        .teacher-grid {
+            padding: 0 10px;
+            width: calc(100% - 20px);
+        }
+    
+        .teacher-card {
+            padding: 15px 10px;
+        }
+    
+        #program .container {
+            padding: 0 10px;
+        }
+    
+        .programs-grid {
+            padding: 0 10px;
+            width: calc(100% - 20px);
+        }
+    
+        .program-card {
+            max-width: 300px;
+        }
+    
+        .program-content {
+            padding: 15px 10px;
+        }
+    
+        .stats-container {
+            grid-template-columns: 1fr;
+        }
+    
+        .about-card h3 {
+            font-size: 1.2rem;
+        }
+    
+        .highlight-box h3 {
+            font-size: 1.1rem;
+        }
+    
+        .section-title h2 {
+            font-size: 1.8rem;
+        }
+    
+        #galeri .container {
+            padding: 0 10px;
+        }
+        
+        .gallery-grid {
+            grid-template-columns: 1fr;
+            padding: 10px;
+            gap: 15px;
+            width: calc(100% - 20px);
+        }
+    
+        .gallery-item {
+            max-width: 100%;
+        }
+    }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="tk_combine.html" class="nav-logo">TK PKK Siti Chotijah</a>
+            </div>
+        </nav>
+
+        <section class="gallery-detail-container">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2 id="galleryTitle">Detail Kegiatan</h2>
+                </div>
+                
+                <img id="galleryDetailImage" class="gallery-detail-image" src="" alt="Kegiatan">
+                
+                <div class="gallery-detail-content" data-aos="fade-up">
+                    <h3 id="galleryDetailTitle"></h3>
+                    <p id="galleryDetailDescription"></p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="bubbles">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+            </div>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🏫 Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Asrikaton, Kec. Pakis, Kabupaten Malang</p>
+                    <p><i class="fas fa-phone-alt"></i> (0341) 123-456</p>
+                    <p><i class="fas fa-envelope"></i> tk.sitichotijah@gmail.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>⏰ Jam Bermain</h3>
+                    <p><i class="fas fa-sun"></i> Senin - Jumat</p>
+                    <h2>07.00 - 11.00</h2>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Dibuat oleh K10 dari Universitas Widyagama</p>
+                <p>&copy; 2025 TK PKK Siti Chotijah. All Rights Reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </footer>
+        <script>
+            // Script to dynamically load gallery details based on URL parameter
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const galleryId = urlParams.get('id');
+
+                const galleryDetails = {
+                    '1': {
+                        title: 'Kegiatan Mewarnai',
+                        description: 'Mengembangkan kreativitas anak melalui aktivitas mewarnai...',
+                        image: 'Junpei.jpg'
+                    },
+                    '2': {
+                        title: 'Bermain Outdoor',
+                        description: 'Aktivitas bermain di luar ruangan...',
+                        image: 'Akihiko.jpg'
+                    },
+                    '3': {
+                        title: 'Pembelajaran Interaktif',
+                        description: 'Belajar dengan metode yang menyenangkan',
+                        image: 'Makoto.jpg'
+                    },
+                    '4': {
+                        title: 'Kegiatan Menari',
+                        description: 'Pengembangan bakat seni dan motorik',
+                        image: 'Yukari.jpg'
+                    },
+                    '5': {
+                        title: 'Membaca Bersama',
+                        description: 'Meningkatkan minat baca sejak dini',
+                        image: 'Kirijo.jpg'
+                    },
+                    '6': {
+                        title: 'Kegiatan Berkebun',
+                        description: 'Mengenal alam dan tanaman',
+                        image: 'Fuuka.jpg'
+                    }
+                };
+
+                const detail = galleryDetails[galleryId];
+
+                if (detail) {
+                    document.getElementById('galleryDetailTitle').textContent = detail.title;
+                    document.getElementById('galleryDetailDescription').textContent = detail.description;
+                    document.getElementById('galleryDetailImage').src = detail.image;
+                    document.getElementById('galleryTitle').textContent = detail.title;
+                }
+    
+                // Reinitialize AOS
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true,
+                    mirror: false
+                });
+    
+                // Navbar scroll effect
+                window.addEventListener('scroll', function() {
+                    const navbar = document.querySelector('.navbar');
+                    if (window.scrollY > 50) {
+                        navbar.style.padding = '0.5rem 0';
+                        navbar.style.background = 'rgba(119, 102, 180, 0.98)';
+                    } else {
+                        navbar.style.padding = '1rem 0';
+                        navbar.style.background = 'rgba(119, 102, 180, 0.95)';
+                    }
+                });
+            });
+        </script>
+    </body>
+    </html>
