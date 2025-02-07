@@ -371,6 +371,28 @@ section {
     color: #666;
 }
 
+.nis-box {
+    margin-top: 15px;
+    padding: 10px;
+    background: #ffffff;
+    border: 2px solid #7766b4;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.nis-box h3 {
+    font-size: 1.2rem;
+    color: #7766b4;
+    font-weight: bold;
+}
+
+.nis-box p {
+    font-size: 1rem;
+    color: #333;
+    margin: 5px 0;
+}
+
 /* Teacher Section */
 .teacher-profile {
     max-width: 1200px;
