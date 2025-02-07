@@ -408,7 +408,7 @@ section {
 .teacher-image-container {
     position: relative;
     display: inline-block;
-    --shadow-url: url('2b_smile.png'); /* Default */
+    --shadow-url: url('Bersama.JPG'); /* Default */
 }
 
 .teacher-image-container img {
