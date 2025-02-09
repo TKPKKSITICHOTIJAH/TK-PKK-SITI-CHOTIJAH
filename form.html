@@ -133,9 +133,34 @@
         // Form submission handler
         document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Terima kasih! Data pendaftaran Anda telah kami terima.');
-            this.reset();
+        
+            var formData = {
+                childName: document.getElementById('childName').value,
+                nickName: document.getElementById('nickName').value,
+                birthPlace: document.getElementById('birthPlace').value,
+                birthDate: document.getElementById('birthDate').value,
+                gender: document.getElementById('gender').value,
+                religion: document.getElementById('religion').value,
+                fatherName: document.getElementById('fatherName').value,
+                fatherJob: document.getElementById('fatherJob').value,
+                motherName: document.getElementById('motherName').value,
+                motherJob: document.getElementById('motherJob').value,
+                address: document.getElementById('address').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value
+            };
+        
+            fetch("https://script.google.com/macros/s/AKfycbyv3ljEq86CWeFhi50cKdardhLvFUFvWPQjLXI-vSG3CKEg4E83UFbpxFYdo9ZLMGZy/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            }).then(() => {
+                alert("Terima kasih! Data pendaftaran Anda telah kami terima.");
+                document.getElementById('registrationForm').reset();
+            }).catch(error => console.error("Error:", error));
         });
+
     </script>
 </body>
 </html>
