@@ -52,22 +52,43 @@
                     <div class="form-group">
                         <label for="gender">Jenis Kelamin</label>
                         <select id="gender" required>
-                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value=""disabled selected>Pilih Jenis Kelamin</option>
                             <option value="L">Laki-laki</option>
                             <option value="P">Perempuan</option>
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="childOrder">Anak ke</label>
+                        <select id="childOrder" required>
+                            <option value=""disabled selected>Pilih</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="siblings">Jumlah Saudara (Kandung/Tiri/Angkat)</label>
+                        <select id="siblings" required>
+                            <option value=""disabled selected>Pilih</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="religion">Agama</label>
                         <select id="religion" required>
-                            <option value="">Pilih Agama</option>
+                            <option value=""disabled selected>Pilih Agama</option>
                             <option value="islam">Islam</option>
                             <option value="kristen">Kristen</option>
                             <option value="katolik">Katolik</option>
                             <option value="hindu">Hindu</option>
                             <option value="buddha">Buddha</option>
                             <option value="konghucu">Konghucu</option>
-                            <option value="semua">All In</option>
                         </select>
                     </div>
                 </div>
@@ -84,6 +105,27 @@
                         <label for="fatherJob">Pekerjaan Ayah</label>
                         <input type="text" id="fatherJob" required>
                     </div>
+                    <div class="form-group">
+                        <label for="fatherBirthPlace">Tempat Lahir Ayah</label>
+                        <input type="text" id="fatherBirthPlace" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fatherBirthDate">Tanggal Lahir Ayah</label>
+                        <input type="date" id="fatherBirthDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fatherEdu">Pendidikan Terakhir Ayah</label>
+                        <select id="fatherEdu" required>
+                            <option value=""disabled selected>Pilih</option>
+                            <option value="SD">SD</option>
+                            <option value="SMP">SMP</option>
+                            <option value="SMA">SMA</option>
+                            <option value="D3">D3</option>
+                            <option value="S1">S1</option>
+                            <option value="S2">S2</option>
+                            <option value="S3">S3</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -93,6 +135,27 @@
                     <div class="form-group">
                         <label for="motherJob">Pekerjaan Ibu</label>
                         <input type="text" id="motherJob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="motherBirthPlace">Tempat Lahir Ibu</label>
+                        <input type="text" id="motherBirthPlace" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="motherBirthDate">Tanggal Lahir Ibu</label>
+                        <input type="date" id="motherBirthDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="motherEdu">Pendidikan Terakhir Ibu</label>
+                        <select id="motherEdu" required>
+                            <option value=""disabled selected>Pilih</option>
+                            <option value="SD">SD</option>
+                            <option value="SMP">SMP</option>
+                            <option value="SMA">SMA</option>
+                            <option value="D3">D3</option>
+                            <option value="S1">S1</option>
+                            <option value="S2">S2</option>
+                            <option value="S3">S3</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -141,14 +204,22 @@
                 birthDate: document.getElementById('birthDate').value,
                 gender: document.getElementById('gender').value,
                 religion: document.getElementById('religion').value,
+                childOrder: document.getElementById('childOrder').value,
+                siblings: document.getElementById('siblings').value,
                 fatherName: document.getElementById('fatherName').value,
                 fatherJob: document.getElementById('fatherJob').value,
+                fatherBirthPlace: document.getElementById('fatherBirthPlace').value,
+                fatherBirthDate: document.getElementById('fatherBirthDate').value,
+                fatherEdu: document.getElementById('fatherEdu').value,
                 motherName: document.getElementById('motherName').value,
                 motherJob: document.getElementById('motherJob').value,
+                motherBirthPlace: document.getElementById('motherBirthPlace').value,
+                motherBirthDate: document.getElementById('motherBirthDate').value,
+                motherEdu: document.getElementById('motherEdu').value,
                 address: document.getElementById('address').value,
                 phone: document.getElementById('phone').value,
                 email: document.getElementById('email').value
-            };
+            };            
         
             fetch("https://script.google.com/macros/s/AKfycbyv3ljEq86CWeFhi50cKdardhLvFUFvWPQjLXI-vSG3CKEg4E83UFbpxFYdo9ZLMGZy/exec", {
                 method: "POST",
